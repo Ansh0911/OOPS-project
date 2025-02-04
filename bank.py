@@ -76,8 +76,11 @@ class Bank:
             reciever=self.accounts[to_acc]
         
             if sender._balance>amount:
-                sender.withdraw(amount)
-                reciever.deposit(amount)
+                #sender.withdraw(amount)
+                #reciever.deposit(amount)
+                sender._balance=sender._balance-amount
+                reciever._balance=reciever._balance+amount
+
 
                 print(f"Rs{amount} Transferred from {from_acc} to {to_acc}")
             else:   
