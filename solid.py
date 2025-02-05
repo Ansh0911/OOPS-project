@@ -1,5 +1,15 @@
 from abc import ABC,abstractmethod
 
+#SRP (Single Responsibility Principle)
+'''Following SRP (Single Responsibility Principle) as there are separate classes 
+   for each operations'''
+
+#OCP (Open/Closed Principle)
+'''Following OCP (Open/Closed Principle) by using an abstract class as the Bank_Account 
+   class is open for extension but closed for modification, allowing new account 
+   types to be added easily.'''
+
+
 class Bank_Account(ABC):
 
     def __init__(self,name,accountnumber,balance):
@@ -20,7 +30,14 @@ class Bank_Account(ABC):
         print(f"Account Holder: {self.name}")
         print(f"Available Balance: Rs{self._balance}\n")
 
-    
+
+#LSP (Liskov Substitution Principle)      
+'''LSP (Liskov Substitution Principle)
+   Following LSP (Liskov Substitution Principle) as Subclasses such as Savings_Account, 
+   Current_Account, and Loan_Account substitute Bank_Account without breaking 
+   functionality.'''
+
+
 class Savings_Account(Bank_Account):
     def __init__(self, name, accountnumber, balance=0.00 , intrest_rate=3 ):
         super().__init__(name, accountnumber, balance)
@@ -54,6 +71,11 @@ class Current_Account(Bank_Account):
             print("insufficient balance in your current account")
 
 
+#DIP (Dependency Inversion Principle)
+''' Following DIP (Dependency Inversion Principle) as the Bank class depend on abstraction Bank_Account.
+    Bank does not directly depend on Savings_Account, Current_Account, or Loan_Account. 
+    Instead, it depends on the abstraction Bank_Account'''
+
 class Bank:
     def __init__(self):
         self.accounts = {}
@@ -84,6 +106,11 @@ class Bank:
                 print("Insufficient balance in your Account")
         else:
             print("Enter correct Account Numbers")
+
+
+#ISP (Interface Segregation Principle)
+'''Following ISP (Interface Segregation) as Loan functionality is separate from 
+   Bank_Account so that other account types don't have to implement Loan functionality'''
 
 
 class Loan():
